@@ -1,69 +1,169 @@
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html;charset=$_charset">
-<title>$_page_title</title>
-<link rel="stylesheet" href="/css/survey-base.css" type="text/css">
-<link rel="stylesheet" href="/svy/$_appid/misc/BRGstandardOnlineV5.css" type="text/css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-[* ($QMODE==1) ? q{<script src="/svy/$_appid/misc/add_bookmark.jquery.js"></script>} : q{} *]
-<!--[if gt IE 9]>
-<script src="/svy/$_appid/misc/brgV5.js"></script>
-<![endif]-->
-<!--[if !IE]><!-->
-<script src="/svy/$_appid/misc/brgV5.js"></script>
- <!--<![endif]-->
-<script>
-window.onload = function () {document.forms.main.gfrm.value = ''};
-</script>
-$_head_lines
-</head>
-<body>
-<form method=post action="$_uri" name=main id="$_form_id" enctype="application/x-www-form-urlencoded">
-<input type="hidden" name="gfrm">
-<input type="hidden" name="page_heading" value="$_page_heading">
-<div class="center">
-<div class="container">
-                    <b class="xtop">
-                        <b class="xb1"></b>
-                        <b class="xb2 color_a"></b>
-                        <b class="xb3 color_a"></b>
-                        <b class="xb4 color_a"></b>
-                    </b>
-<div class="xboxcontent">
-<h1 class="color_a">$_page_heading</h1>
-<div class="header">
-<table width="100%">
-<tr>
-<td align="left">
-[* ($QMODE==1) ? q{<p class="test_link" id="addBookmarkContainer"></p><p class="test_link" id="addRespContainer"></p>} : q{} *]
-[* ($QMODE==1) ? q{
-<script>
-$( document ).ready(function() {
-  $( "#form_submit" ).click(function() {
-    new_url = "http://brgsurvey.com/run/$_appid/$_trans_id?gfrm=" + $( "#form_num" ).val();
-    window.location = new_url;
-  });
+/*!
+*  Copyright 2006-2011 Dynamic Site Solutions.
+*  Free use of this script is permitted for non-commercial applications,
+*  subject to the requirement that this comment block be kept and not be
+*  altered.  The data and executable parts of the script may be changed
+*  as needed.  Dynamic Site Solutions makes no warranty regarding fitness
+*  of use or correct function of the script.  Terms for use of this script
+*  in commercial applications may be negotiated; for this, or for other
+*  questions, contact "license-info@dynamicsitesolutions.com".
+*
+*  Script by: Dynamic Site Solutions -- http://www.dynamicsitesolutions.com/
+*  Last Updated: 2011-03-09
+* Edited: Bovitz Inc. -- http://www.bovitzinc.com
+* Updated: 2014-9-21
+*/
+
+//IE5+/Win, Firefox, Netscape 6+, Opera 7+, Safari, Google Chrome for Windows,
+// Konqueror 3, IE5/Mac, iCab 3
+$(document).ready(function() {
+
+var isMSIE=/*@cc_on!@*/false; // http://dean.edwards.name/weblog/2007/03/sniff/
+var isIEmac=false; /*@cc_on @if(@_jscript&&!(@_win32||@_win16)&&
+(@_jscript_version<5.5)) isIEmac=true; @end @*/
+var undefined;
+
+var gfrm = $('[name="lform"]').attr("value");
+
+var trans_id = $('[name="trans_id"]').attr("value");
+
+var appid = $('[name="appid"]').attr("value");
+
+var page_heading = $('[name="page_heading"]').attr("value");
+
+var doc_title = "Project ID: " + page_heading + " -- " + "Respondent ID = " + trans_id + " form# = " + gfrm;
+
+var resp_title = "Project ID: " + page_heading + " -- " + "Respondent ID = " + trans_id + "<br/>Click here to view your answers";
+
+var book_title = "Bookmark Page:  " + gfrm;
+
+var extraSlash = "";
+
+if(location.href.charAt(location.href.length-1) != '/'){ extraSlash = '/';}
+
+var bookmark_url = "http://www.brgsurvey.com/run/" + appid + "?trans_id=" + trans_id + "&gfrm=" + gfrm;
+
+var resp_url = "http://brgsurvey.com/reports/" + appid + "/iresp?cd=" + trans_id;
+
+function isEmpty(s){return ((s=='')||/^\s*$/.test(s));}
+
+var addBookmarkObj = {
+  linkText:book_title,
+  title:doc_title,
+  URL:bookmark_url,
+  URL2:resp_url,
+  addTextLink:function(parId){
+    if(addBookmarkObj.checkMobileDevice()) return;
+    var a=addBookmarkObj.makeLink(parId,1);
+    if(a){
+      jQuery(a).text(addBookmarkObj.linkText);
+      return;
+    }
+    var cont=addBookmarkObj.getParent(parId);
+    if(!cont) return;
+    jQuery(cont).append('<span>'+addBookmarkObj.findKeys()+'</span>');
+  },
+  addImageLink:function(parId,imgPath){
+    if(!imgPath || isEmpty(imgPath)) return;
+    if(addBookmarkObj.checkMobileDevice()) return;
+    var o=addBookmarkObj,a=o.makeLink(parId),img=document.createElement('img');
+    img.title=img.alt=o.modal?o.linkText:o.findKeys();
+    img.src=imgPath;
+    a.appendChild(img);
+  },
+  makeLink:function(parId,isText){
+    var cont=addBookmarkObj.getParent(parId);
+    if(!cont) return null;
+    var a=document.createElement('a');
+    a.href=addBookmarkObj.URL;
+    var s=document.createElement('div').style;
+    var isFx35plus=((navigator.userAgent.toLowerCase().indexOf('firefox')!=-1)
+      && (s.wordWrap!==undefined) && (s.MozTransform!==undefined));
+    if(window.external && isMSIE && !isIEmac){
+      // IE4/Win generates an error when you
+      // execute 'typeof(window.external.AddFavorite)'
+      // In IE7 the page must be from a web server, not directly from a local
+      // file system, otherwise, you will get a permission denied error.
+      // Maxthon shows 'typeof(window.external.AddFavorite)' as 'undefined'
+      // even though it is defined.
+      a.onclick=function(){ // IE/Win
+        try {
+          window.external.AddFavorite(addBookmarkObj.URL,addBookmarkObj.title);
+        } catch(ex){
+          addBookmarkObj.displayMsg(addBookmarkObj.findKeys());
+        }
+        return false;
+      }
+      addBookmarkObj.modal=1;
+    } else if(window.opera || isFx35plus){ // Opera 7+, Firefox 3.5+
+      a.title=addBookmarkObj.title,a.rel='sidebar';
+      addBookmarkObj.modal=1;
+    } else if(isText) {
+      return null;
+    } else {
+      a.onclick=function(){
+        addBookmarkObj.displayMsg(this.firstChild.title);
+        return false;
+      }
+    }
+    return cont.appendChild(a);
+  },
+  displayMsg:function(t){
+    alert('After closing this dialog, '+t.charAt(0).toLowerCase()+t.slice(1));
+  },
+  getParent:function(parId){
+    if(!document.getElementById || !document.createTextNode) return null;
+    parId=((typeof(parId)=='string')&&!isEmpty(parId))
+      ?parId:'addBookmarkContainer';
+    return document.getElementById(parId)||null;
+  },
+  findKeys:function(){
+    // user agent sniffing is bad in general, but this is one of the times
+    // when it's really necessary
+    var ua=navigator.userAgent.toLowerCase(),Webkit=(ua.indexOf('webkit')!=-1),
+      Mac=/mac(\s*os|intosh|.*p(ower)?pc)/.test(ua),
+      str=(Mac?'Command/Cmd':'CTRL');
+    if(window.opera && (!opera.version || (opera.version()<9))) {
+      str+=' + T';  // Opera versions before 9
+    } else if(ua.indexOf('konqueror')!=-1) {
+      str+=' + B'; // Konqueror
+    } else if(window.opera || window.home || Webkit || isMSIE || Mac) {
+      // IE, Firefox, Netscape, Safari, Google Chrome, Opera 9+, iCab, IE5/Mac
+      str+=' + D';
+    }
+    return ((str)?'Press '+str+' to bookmark this page.':str);
+  },
+  checkMobileDevice:function(){
+    var r='iphone|ipod|android|palm|symbian|windows ce|windows phone|iemobile|'+
+    'blackberry|smartphone|netfront|opera m|htc[-_].*opera';
+    return (new RegExp(r)).test(navigator.userAgent.toLowerCase());
+  }
+}
+
+var a = document.createElement('a');
+a.title = resp_title;
+a.innerHTML = a.title;
+a.target = '_blank';
+a.href = resp_url;
+$('#addRespContainer').append(a);
+
+jQuery(document).ready(addBookmarkObj.addTextLink);
+
+ });
+// to make multiple links, do something like this:
+/*
+jQuery(document).ready(function(){
+  var f=addBookmarkObj.addTextLink;
+  f();
+  f('otherContainerID');
 });
-</script><input type="text" maxlength="3" size="3" id="form_num"><input type="button" value="Go to Page" id="form_submit">} : q{} *]
-</td>
-<td align="right">$_pgbar</td>
-</tr>
-</table>
-</div>
-<div class="content">
-$_errmsg
-$_main
-</div>
-</div>
-                    <b class="xbottom">
-                        <b class="xb4"></b>
-                        <b class="xb3"></b>
-                        <b class="xb2"></b>
-                        <b class="xb1"></b>
-                    </b>
-</div>
-</div>
-</form>
-</body>
-</html>
+*/
+
+// below is an example of how to make an image link with this
+// the first parameter is the ID. If you pass an empty string it defaults to
+// 'addBookmarkContainer'.
+/*
+jQuery(document).ready(function(){
+  addBookmarkObj.addImageLink('','/images/add-bookmark.jpg');
+});
+*/
