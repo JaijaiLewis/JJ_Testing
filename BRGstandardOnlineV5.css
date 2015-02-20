@@ -1,0 +1,253 @@
+body {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 17px; background-color:#eee;}
+
+div {display:block}
+.center {text-align:center;}
+.container {width:1000px; margin:auto; text-align:center; background-color:#eee; padding-top: 10px;}
+
+.test_link {font-size: 0.6em; margin: 2px;}
+
+.content { width:960px; height: auto; min-height:450px; padding:20px; margin:auto; text-align:left;}
+
+/*top bar with rounded corners that includes page title (HIDDEN BY DEFAULT)*/
+.container h1 {
+	margin:0; font-size:1.2em; padding:0 11px 5px 11px; border-bottom:1px solid #444; text-align:center; text-indent: -3000px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	display: none;
+	}
+
+/*question text span*/
+span.i-questext{
+	font-size: 17px;
+}
+/*main survey content box*/
+.xboxcontent {
+	display:block;
+	height: auto;
+	border: 1px solid #e5b270;
+	border-width:3px; 
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	-webkit-box-shadow: 11px 11px 11px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    11px 11px 11px rgba(50, 50, 50, 0.75);
+	box-shadow:         11px 11px 11px rgba(50, 50, 50, 0.75);
+	background: #dbf0fd; /* Old browsers */
+
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NiZWJmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMGY5ZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+
+	background: -moz-linear-gradient(top,  #dbf0fd 0%, #f0f9ff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbf0fd), color-stop(100%,#f0f9ff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #dbf0fd 0%,#f0f9ff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #dbf0fd 0%,#f0f9ff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #dbf0fd 0%,#f0f9ff 100%); /* IE10+ */
+	background: linear-gradient(top,  #dbf0fd 0%,#f0f9ff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbf0fd', endColorstr='#f0f9ff',GradientType=0 ); /* IE6-8 */
+	padding-bottom: 75px;
+	position: relative;
+	}
+
+* html .xboxcontent {height:1px;}
+.color_a {background:#444; color:#fff;}
+
+/*top bar with rounded corners that includes progress*/
+div.header {
+	background-color:#aaa;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+/*progress bar*/
+.i-pgtext {color:#444444; font-family: helvetica, verdana, arial, times new roman, sans-serif;}
+table.i-pg-table {width: 300px;}
+TD.i-done {background-color:#e18a19}
+TD.i-todo {background-color:#FFFFFF}
+
+/*privacy policy*/
+.priv {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 11px; color:#444444; position: absolute; bottom:11px; left:45%;}
+
+/*continue/back buttons*/
+.i-contbtn{
+	background-color: #E18A19;
+	border: 2px solid #000000;
+	box-shadow: 0 0 5px #000000;
+	font-size: 19px;
+	font-weight: normal;
+	margin-left: 2px;
+	transition: all 0.2s;
+	-moz-transition: all 0.2s; /* Firefox 4 */
+	-webkit-transition: all 0.2s; /* Safari and Chrome */
+	-o-transition: all 0.2s; /* Opera */
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	float: left;
+	width:140px;
+	value: "Continue &rarr;";
+	margin-top:20px;
+	}
+.i-contbtn:hover{
+	box-shadow: 0 0 11px #000000;
+	background-color: #ff9000;
+	font-size: 19px;
+	font-weight: bold;
+}
+.i-backbtn{
+	background-color: #E18A19;
+	border: 2px solid #000000;
+	box-shadow: 0 0 5px #000000;
+	font-size: 19px;
+	font-weight: normal;
+	margin-left: 2px;
+	transition: all 0.2s;
+	-moz-transition: all 0.2s; /* Firefox 4 */
+	-webkit-transition: all 0.2s; /* Safari and Chrome */
+	-o-transition: all 0.2s; /* Opera */
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	float: left;
+	width:110px;
+	margin-top:20px;
+	margin-right:15px;
+	}
+.i-backbtn:hover{
+	box-shadow: 0 0 11px #000000;
+	background-color: #ff9000;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+/*text and textbox user input style*/
+.userin {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px;}
+
+/*continue, back, and other buttons*/
+input.button {font-family: helvetica, verdana, arial, times new roman, sans-serif; color:#264360; background-color:#ffffff; font-size: 15px; width:125px; text-align:center; padding:0; padding-top:3px; padding-bottom:4px; border:1px solid #ffffff; outline:1px solid #264360; font-style: italic; margin-left:1px;}
+
+/*free-standing text*/
+.i-freetext {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 17px;}
+
+/*question tag "instructions" (i.e. select all that apply.)*/
+div.prompt {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px; font-style: italic;}
+span.prompt {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px; font-style: italic;}
+
+/*radio and checkbox response list text*/
+.i-rbcb-opt {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px; vertical-align: middle;}
+
+/*table: choice headers*/
+td.i-hdrcell {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 13px; text-align: center; vertical-align: bottom; font-weight: bold;}
+table.i-question-table td.i-hdrcell{border-collapse:collapse;}
+table.i-header-span td.i-hdrcell{border: none;}
+
+/*table: right choice headers*/
+td.hdrcell {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 13px; text-align: center; vertical-align: bottom; font-weight: bold;}
+
+
+/*table: header row*/
+tr.i-hdrrow {background-color: #eee; border: 1px solid #000000; border-collapse:collapse;}
+
+/*table: choice header cells*/
+tr.i-header-span td {background-color: #eee;}
+
+/*table: row background colors*/
+tr.i-row {background-color: transparent;}
+
+/*table: row background colors when hovered*/
+tr.i-row:hover {background-color: #FFFFFF;}
+
+/*table borders*/
+table.i-question-table td {border: 1px solid #000000}
+
+/*table row labels*/
+td.i-questext {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 17px;}
+
+/*cell hover effect to punch buttons*/
+td[id*="cell_"]:hover {
+    background-color: #FDFF4E;
+}
+
+/*removes borders from row labels*/
+td[valign*='top'] {
+border: none !important;
+}
+
+/*radio button and checkbox rows*/
+tr.i-opt-row, tr.i-opt-row-odd {background-color: transparent;}
+
+/*radio and checkbox label font-size and line-height*/
+label{
+	font-size: 15px;
+	line-height:1.5;
+}
+/*radio button and checkbox labels when hovered*/
+.i-opt-row:hover .i-rbcb {box-shadow: 0px 0px 5px #000000;}
+
+/*validation messages*/
+.i-errmsg, .i-errmsg td {
+	background-color: #EEE;
+	color: #F10000;
+	font-size: 108%;
+	}
+.i-errmsg {
+	background-color: #EEE;
+	border: 1px solid #FF0000;
+	display: block;
+	padding: 2px;
+	width: 100%;
+	}
+
+/*entry forms*/
+select, input, textarea {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px;}
+.i-input-text {font-family: helvetica, verdana, arial, times new roman, sans-serif; font-size: 15px;}
+
+/*Fade in grid code*/
+.jbutton, .tjbutton, .jbutton_hov, .tjbutton_hov, .jbutton_sel, .tjbutton_sel, .jbutton_sel_hov, .tjbutton_sel_hov
+        {
+        width:130px;
+        height:150px;
+        display:table-cell;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #385D8A;
+        padding: 10px 5px;
+        background-color: #A3D1FF;
+        color: white;
+                border-radius: 5px;
+           -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        line-height: 1.4em;
+        font-weight: bold;
+        font-size:14pt;
+        text-align:center;
+        vertical-align: middle;
+        }
+.jbutton input,.jbutton_hov input,.jbutton_sel input,.jbutton_sel_hov input{
+	display: none;
+}
+
+.jbutton, .tjbutton                 {border-color: #385D8A; background-color: #D3E6F1; color: #111111}
+.jbutton_hov, .tjbutton_hov         {border-color: #385D8A; background-color: #4878A8; color: #FFFFFF}
+.jbutton_sel, .tjbutton_sel         {border-color: #385D8A; background-color: #2B496B; color: #FFFFFF}
+.jbutton_sel_hov, .tjbutton_sel_hov {border-color: #385D8A; background-color: #2B496B; color: #FFFFFF}
+#tdin-QX1-99.jbutton           {border-color: #C49300; background-color: #F3D1D1;} /* This stuff lets you target a particular button, in this case, Option 99 */
+#tdin-QX1-99.jbutton_hov       {border-color: #C49300; background-color: #C49300;} /* This stuff lets you target a particular button, in this case, Option 99 */
+#tdin-QX1-99.jbutton_sel       {border-color: #C49300; background-color: #DFA800;} /* This stuff lets you target a particular button, in this case, Option 99 */
+#tdin-QX1-99.jbutton_sel_hov   {border-color: #C49300; background-color: #DFA800;} /* This stuff lets you target a particular button, in this case, Option 99 */
+
+/*Image rules*/
+.image-container {
+  width: 210px;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+}

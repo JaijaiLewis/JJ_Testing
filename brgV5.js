@@ -1,0 +1,1 @@
+function cellhover() {$(function(){$("td[id^=cell_]").has("input:radio, input:checkbox").each(function(){var a=$(this);a.hover(function(){$(this).addClass("i-cellhover")},function(){$(this).removeClass("i-cellhover")});a.click(function(b){if(b.target.nodeName==="INPUT"){return}$(this).find("input:radio,input:checkbox").not(":disabled, :hidden, [cl]").click()})})});};cellhover()

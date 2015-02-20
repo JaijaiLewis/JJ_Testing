@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=$_charset">
+<title>$_page_title</title>
+<link rel="stylesheet" href="/css/survey-base.css" type="text/css">
+<link rel="stylesheet" href="/svy/$_appid/misc/BRGstandardOnlineV5.css" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+[* ($QMODE==1) ? q{<script src="/svy/$_appid/misc/add_bookmark.jquery.js"></script>} : q{} *]
+<!--[if gt IE 9]>
+<script src="/svy/$_appid/misc/brgV5.js"></script>
+<![endif]-->
+<!--[if !IE]><!-->
+<script src="/svy/$_appid/misc/brgV5.js"></script>
+ <!--<![endif]-->
+<script>
+window.onload = function () {document.forms.main.gfrm.value = ''};
+</script>
+$_head_lines
+</head>
+<body>
+<form method=post action="$_uri" name=main id="$_form_id" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="gfrm">
+<input type="hidden" name="page_heading" value="$_page_heading">
+<div class="center">
+<div class="container">
+                    <b class="xtop">
+                        <b class="xb1"></b>
+                        <b class="xb2 color_a"></b>
+                        <b class="xb3 color_a"></b>
+                        <b class="xb4 color_a"></b>
+                    </b>
+<div class="xboxcontent">
+<h1 class="color_a">$_page_heading</h1>
+<div class="header">
+<table width="100%">
+<tr>
+<td align="left">
+[* ($QMODE==1) ? q{<p class="test_link" id="addBookmarkContainer"></p><p class="test_link" id="addRespContainer"></p>} : q{} *]
+[* ($QMODE==1) ? q{
+<script>
+$( document ).ready(function() {
+  $( "#form_submit" ).click(function() {
+    new_url = "http://brgsurvey.com/run/$_appid/$_trans_id?gfrm=" + $( "#form_num" ).val();
+    window.location = new_url;
+  });
+});
+</script><input type="text" maxlength="3" size="3" id="form_num"><input type="button" value="Go to Page" id="form_submit">} : q{} *]
+</td>
+<td align="right">$_pgbar</td>
+</tr>
+</table>
+</div>
+<div class="content">
+$_errmsg
+$_main
+</div>
+</div>
+                    <b class="xbottom">
+                        <b class="xb4"></b>
+                        <b class="xb3"></b>
+                        <b class="xb2"></b>
+                        <b class="xb1"></b>
+                    </b>
+</div>
+</div>
+</form>
+</body>
+</html>
